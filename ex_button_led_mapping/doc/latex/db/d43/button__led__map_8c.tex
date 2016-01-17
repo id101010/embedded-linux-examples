@@ -1,0 +1,630 @@
+\section{button\-\_\-led\-\_\-map.\-c File Reference}
+\label{button__led__map_8c}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$fcntl.\-h$>$}\\*
+{\ttfamily \#include $<$signal.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+{\ttfamily \#include $<$errno.\-h$>$}\\*
+{\ttfamily \#include $<$sys/types.\-h$>$}\\*
+{\ttfamily \#include $<$sys/stat.\-h$>$}\\*
+{\ttfamily \#include $<$sys/ioctl.\-h$>$}\\*
+{\ttfamily \#include $<$sys/time.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D}~1000
+\item 
+\#define {\bf O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D}~1000000
+\item 
+\#define {\bf S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H}~\char`\"{}/sys/class/gpio/\char`\"{}
+\item 
+\#define {\bf M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F}~512
+\item 
+\#define {\bf M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R}~512
+\item 
+\#define {\bf L\-O\-W}~0
+\item 
+\#define {\bf H\-I\-G\-H}~1
+\item 
+\#define {\bf O\-U\-T\-P\-U\-T}~0
+\item 
+\#define {\bf I\-N\-P\-U\-T}~1
+\item 
+\#define {\bf P\-R\-E\-S\-S\-E\-D}~'0'
+\item 
+\#define {\bf L\-E\-D\-\_\-1}~61
+\item 
+\#define {\bf L\-E\-D\-\_\-2}~44
+\item 
+\#define {\bf L\-E\-D\-\_\-3}~68
+\item 
+\#define {\bf L\-E\-D\-\_\-4}~67
+\item 
+\#define {\bf B\-U\-T\-N\-\_\-1}~49
+\item 
+\#define {\bf B\-U\-T\-N\-\_\-2}~112
+\item 
+\#define {\bf B\-U\-T\-N\-\_\-3}~51
+\item 
+\#define {\bf B\-U\-T\-N\-\_\-4}~7
+\item 
+\#define {\bf M\-A\-X\-\_\-\-G\-P\-I\-O}~(4)
+\item 
+\#define {\bf L1}~0
+\item 
+\#define {\bf L2}~1
+\item 
+\#define {\bf L3}~2
+\item 
+\#define {\bf L4}~3
+\item 
+\#define {\bf T1}~0
+\item 
+\#define {\bf T2}~1
+\item 
+\#define {\bf T3}~2
+\item 
+\#define {\bf T4}~3
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T} = 0, 
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T}, 
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}, 
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}, 
+\\*
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E}, 
+{\bf G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf sysfs\-\_\-gpio\-\_\-handler} (uint8\-\_\-t function, uint32\-\_\-t gpio, char $\ast$val)
+\item 
+void {\bf signal\-\_\-ctrlc\-\_\-handler} (int sig\-\_\-num)
+\item 
+void {\bf signal\-\_\-terminate\-\_\-handler} (int sig\-\_\-num)
+\item 
+int {\bf main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+enum  \{ ... \}  {\bf G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S}
+\item 
+static int32\-\_\-t {\bf gpio\-\_\-led} [{\bf M\-A\-X\-\_\-\-G\-P\-I\-O}] = \{{\bf L\-E\-D\-\_\-1}, {\bf L\-E\-D\-\_\-2}, {\bf L\-E\-D\-\_\-3}, {\bf L\-E\-D\-\_\-4}\}
+\item 
+static int32\-\_\-t {\bf gpio\-\_\-btn} [{\bf M\-A\-X\-\_\-\-G\-P\-I\-O}] = \{{\bf B\-U\-T\-N\-\_\-1}, {\bf B\-U\-T\-N\-\_\-2}, {\bf B\-U\-T\-N\-\_\-3}, {\bf B\-U\-T\-N\-\_\-4}\}
+\item 
+static char {\bf O\-N} [$\,$] = \char`\"{}0\char`\"{}
+\item 
+static char {\bf O\-F\-F} [$\,$] = \char`\"{}1\char`\"{}
+\item 
+static char {\bf O\-U\-T} [$\,$] = \char`\"{}out\char`\"{}
+\item 
+static char {\bf I\-N} [$\,$] = \char`\"{}in\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!B\-U\-T\-N\-\_\-1@{B\-U\-T\-N\-\_\-1}}
+\index{B\-U\-T\-N\-\_\-1@{B\-U\-T\-N\-\_\-1}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{B\-U\-T\-N\-\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-T\-N\-\_\-1~49}\label{button__led__map_8c_abc92cd3cfcdd5978ae0e644294ce7f7b}
+
+
+Definition at line 74 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!B\-U\-T\-N\-\_\-2@{B\-U\-T\-N\-\_\-2}}
+\index{B\-U\-T\-N\-\_\-2@{B\-U\-T\-N\-\_\-2}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{B\-U\-T\-N\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-T\-N\-\_\-2~112}\label{button__led__map_8c_a8d7d826cc7ea41815f35f662db50fd31}
+
+
+Definition at line 75 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!B\-U\-T\-N\-\_\-3@{B\-U\-T\-N\-\_\-3}}
+\index{B\-U\-T\-N\-\_\-3@{B\-U\-T\-N\-\_\-3}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{B\-U\-T\-N\-\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-T\-N\-\_\-3~51}\label{button__led__map_8c_a1882045c6ad2208cc2f057312c017ccc}
+
+
+Definition at line 76 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!B\-U\-T\-N\-\_\-4@{B\-U\-T\-N\-\_\-4}}
+\index{B\-U\-T\-N\-\_\-4@{B\-U\-T\-N\-\_\-4}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{B\-U\-T\-N\-\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-T\-N\-\_\-4~7}\label{button__led__map_8c_aa6c1e21dd26847027a6cce0f6109f003}
+
+
+Definition at line 77 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!H\-I\-G\-H@{H\-I\-G\-H}}
+\index{H\-I\-G\-H@{H\-I\-G\-H}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{H\-I\-G\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-I\-G\-H~1}\label{button__led__map_8c_a5bb885982ff66a2e0a0a45a8ee9c35e2}
+
+
+Definition at line 62 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!I\-N\-P\-U\-T@{I\-N\-P\-U\-T}}
+\index{I\-N\-P\-U\-T@{I\-N\-P\-U\-T}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{I\-N\-P\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-N\-P\-U\-T~1}\label{button__led__map_8c_a1bb283bd7893b9855e2f23013891fc82}
+
+
+Definition at line 64 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L1@{L1}}
+\index{L1@{L1}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L1}]{\setlength{\rightskip}{0pt plus 5cm}\#define L1~0}\label{button__led__map_8c_a1ce864b284ac751ffd8a0d98d5ccab55}
+
+
+Definition at line 81 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L2@{L2}}
+\index{L2@{L2}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L2}]{\setlength{\rightskip}{0pt plus 5cm}\#define L2~1}\label{button__led__map_8c_ab983f03862f557a786ccc43b26522e16}
+
+
+Definition at line 82 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L3@{L3}}
+\index{L3@{L3}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L3}]{\setlength{\rightskip}{0pt plus 5cm}\#define L3~2}\label{button__led__map_8c_a7771a73a8014204aeeecaaf58527b670}
+
+
+Definition at line 83 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L4@{L4}}
+\index{L4@{L4}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L4}]{\setlength{\rightskip}{0pt plus 5cm}\#define L4~3}\label{button__led__map_8c_a3ede60bb20906da26821f9d2e9ff549f}
+
+
+Definition at line 84 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L\-E\-D\-\_\-1@{L\-E\-D\-\_\-1}}
+\index{L\-E\-D\-\_\-1@{L\-E\-D\-\_\-1}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L\-E\-D\-\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D\-\_\-1~61}\label{button__led__map_8c_aaf81f5fa7d1e779f83e9bf4ce631a7b6}
+
+
+Definition at line 68 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L\-E\-D\-\_\-2@{L\-E\-D\-\_\-2}}
+\index{L\-E\-D\-\_\-2@{L\-E\-D\-\_\-2}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L\-E\-D\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D\-\_\-2~44}\label{button__led__map_8c_ae60a8c1e03b38463f77d556a4a0a8a3b}
+
+
+Definition at line 69 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L\-E\-D\-\_\-3@{L\-E\-D\-\_\-3}}
+\index{L\-E\-D\-\_\-3@{L\-E\-D\-\_\-3}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L\-E\-D\-\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D\-\_\-3~68}\label{button__led__map_8c_a07b3fb51ae7c3cc824dd714b46c1b2b6}
+
+
+Definition at line 70 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L\-E\-D\-\_\-4@{L\-E\-D\-\_\-4}}
+\index{L\-E\-D\-\_\-4@{L\-E\-D\-\_\-4}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L\-E\-D\-\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D\-\_\-4~67}\label{button__led__map_8c_aec84038372d7a55c8b358398978e1dac}
+
+
+Definition at line 71 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!L\-O\-W@{L\-O\-W}}
+\index{L\-O\-W@{L\-O\-W}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-O\-W~0}\label{button__led__map_8c_ab811d8c6ff3a505312d3276590444289}
+
+
+Definition at line 61 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!M\-A\-X\-\_\-\-G\-P\-I\-O@{M\-A\-X\-\_\-\-G\-P\-I\-O}}
+\index{M\-A\-X\-\_\-\-G\-P\-I\-O@{M\-A\-X\-\_\-\-G\-P\-I\-O}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-G\-P\-I\-O~(4)}\label{button__led__map_8c_a31c873117c70fdf316100c6c5d1d2691}
+
+
+Definition at line 78 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R@{M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R}}
+\index{M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R@{M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-P\-A\-T\-H\-\_\-\-S\-T\-R~512}\label{button__led__map_8c_ad5daf3f9a889b8128d595f593688e26b}
+
+
+Definition at line 60 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F@{M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F}}
+\index{M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F@{M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-S\-T\-R\-\_\-\-B\-U\-F~512}\label{button__led__map_8c_a7d753a564cde398c6eadbfc9618bf3d1}
+
+
+Definition at line 59 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D@{O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D}}
+\index{O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D@{O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-N\-E\-\_\-\-M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D~1000}\label{button__led__map_8c_afe1cde8f0d76b92fbe41bc507778ac94}
+
+
+Definition at line 54 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D@{O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D}}
+\index{O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D@{O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-N\-E\-\_\-\-S\-E\-C\-O\-N\-D~1000000}\label{button__led__map_8c_ac93edbf7e8fdbf7398453d51bbd37a97}
+
+
+Definition at line 55 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-U\-T\-P\-U\-T@{O\-U\-T\-P\-U\-T}}
+\index{O\-U\-T\-P\-U\-T@{O\-U\-T\-P\-U\-T}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-U\-T\-P\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-U\-T\-P\-U\-T~0}\label{button__led__map_8c_a61a3c9a18380aafb6e430e79bf596557}
+
+
+Definition at line 63 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!P\-R\-E\-S\-S\-E\-D@{P\-R\-E\-S\-S\-E\-D}}
+\index{P\-R\-E\-S\-S\-E\-D@{P\-R\-E\-S\-S\-E\-D}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{P\-R\-E\-S\-S\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-E\-S\-S\-E\-D~'0'}\label{button__led__map_8c_a654adff3c664f27f0b29c24af818dd26}
+
+
+Definition at line 65 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H@{S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H}}
+\index{S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H@{S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-Y\-S\-F\-S\-\_\-\-P\-A\-T\-H~\char`\"{}/sys/class/gpio/\char`\"{}}\label{button__led__map_8c_ab501057255442ab256120e07a758eb8d}
+
+
+Definition at line 58 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!T1@{T1}}
+\index{T1@{T1}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{T1}]{\setlength{\rightskip}{0pt plus 5cm}\#define T1~0}\label{button__led__map_8c_ac16509a75e3d3fc46b9df1726be486ec}
+
+
+Definition at line 86 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!T2@{T2}}
+\index{T2@{T2}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{T2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T2~1}\label{button__led__map_8c_a259c2993ee45e06a4ea8150451a7a70e}
+
+
+Definition at line 87 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!T3@{T3}}
+\index{T3@{T3}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{T3}]{\setlength{\rightskip}{0pt plus 5cm}\#define T3~2}\label{button__led__map_8c_a5d800c5f04f8638061876b9e32c6c508}
+
+
+Definition at line 88 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!T4@{T4}}
+\index{T4@{T4}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{T4}]{\setlength{\rightskip}{0pt plus 5cm}\#define T4~3}\label{button__led__map_8c_a935a699e9bf1bffc5dad8738d3cd24c0}
+
+
+Definition at line 89 of file button\-\_\-led\-\_\-map.\-c.
+
+
+
+\subsection{Enumeration Type Documentation}
+\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55b}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-E\-X\-P\-O\-R\-T\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55ba4a9c800cd7998449e7e8577458085d39}
+}]\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-U\-N\-E\-X\-P\-O\-R\-T\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55baa01a628d088cb083e5a46557629f1a64}
+}]\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55bab8e1bb9265d84d9636a1544947394679}
+}]\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55bad3348758ff3923957e0ec5f23c0cdffd}
+}]\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-G\-E\-T\-\_\-\-V\-A\-L\-U\-E\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55ba0064ec7f30acc9ed7267ac31956624b1}
+}]\index{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E}!button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}}\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E@{G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E}}\item[{\em 
+G\-P\-I\-O\-\_\-\-S\-Y\-S\-F\-S\-\_\-\-S\-E\-T\-\_\-\-V\-A\-L\-U\-E\label{button__led__map_8c_a06fc87d81c62e9abb8790b6e5713c55baab233bfb06b3c4d710079536a3224666}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 92 of file button\-\_\-led\-\_\-map.\-c.
+
+
+\begin{DoxyCode}
+92      \{
+93     GPIO_SYSFS_EXPORT = 0,
+94     GPIO_SYSFS_UNEXPORT,
+95     GPIO_SYSFS_GET_DIRECTION,
+96     GPIO_SYSFS_SET_DIRECTION,
+97     GPIO_SYSFS_GET_VALUE,
+98     GPIO_SYSFS_SET_VALUE,
+99 \} GPIO_ACTIONS;
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!main@{main}}
+\index{main@{main}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{button__led__map_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 261 of file button\-\_\-led\-\_\-map.\-c.
+
+
+\begin{DoxyCode}
+262 \{
+263     sigset\_t set;
+264     \textcolor{keywordtype}{char}    button[3];
+265     uint8\_t i;
+266 
+267     \textcolor{comment}{/* Register SIGINT CTRL-C signal handler */}
+268     signal(SIGINT, signal_ctrlc_handler);
+269 
+270     \textcolor{comment}{/* Register SIGTERM signal handler */}
+271     signal(SIGTERM, signal_terminate_handler);
+272 
+273     \textcolor{comment}{/* Initializes the signalmask to empty */}
+274     sigemptyset(&set);
+275 
+276     \textcolor{comment}{/* Set the signal mask for the signal handler */}
+277     sigaddset(&set, SIGALRM );
+278 
+279     \textcolor{comment}{/* Setup gpio sysfs for the LEDs [L1..L4] and Buttons [T1..T4] */}
+280     \textcolor{keywordflow}{for} (i=0; i<MAX_GPIO; i++) \{
+281         sysfs_gpio_handler(GPIO_SYSFS_EXPORT, gpio_led[i], NULL);
+282         sysfs_gpio_handler(GPIO_SYSFS_SET_DIRECTION, gpio_led[i], OUT);
+283         sysfs_gpio_handler(GPIO_SYSFS_SET_VALUE, gpio_led[i], OFF);
+284         sysfs_gpio_handler(GPIO_SYSFS_EXPORT, gpio_btn[i], NULL);
+285         sysfs_gpio_handler(GPIO_SYSFS_SET_DIRECTION, gpio_btn[i], IN);
+286     \}
+287 
+288     \textcolor{keywordflow}{while} (1) \{
+289         \textcolor{comment}{// Read values}
+290         \textcolor{keywordflow}{for}(i = 0; i < 4; i++)\{
+291             sysfs_gpio_handler(GPIO_SYSFS_GET_VALUE, gpio_btn[i], &button[i]);
+292         \}
+293 
+294         \textcolor{comment}{// Set values}
+295         \textcolor{keywordflow}{for}(i = 0; i < 4; i++)\{
+296             \textcolor{comment}{// because of the Implementation as a FUCKING string!}
+297             \textcolor{keywordflow}{if}(button[i] == PRESSED)\{
+298                 sysfs_gpio_handler(GPIO_SYSFS_SET_VALUE, gpio_led[i], ON);
+299             \} \textcolor{keywordflow}{else} \{
+300                 sysfs_gpio_handler(GPIO_SYSFS_SET_VALUE, gpio_led[i], OFF);
+301             \}
+302         \} 
+303     \}  
+304 
+305     \textcolor{comment}{/* Set default signal handling */}
+306     signal(SIGINT, SIG\_DFL);
+307 
+308     \textcolor{comment}{/* Unexport all selected gpios */}
+309     \textcolor{keywordflow}{for} (i=0; i<MAX_GPIO; i++) \{
+310         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_led[i], NULL);
+311         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_btn[i], NULL);
+312 
+313     \}
+314 
+315     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+316 \}
+\end{DoxyCode}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!signal\-\_\-ctrlc\-\_\-handler@{signal\-\_\-ctrlc\-\_\-handler}}
+\index{signal\-\_\-ctrlc\-\_\-handler@{signal\-\_\-ctrlc\-\_\-handler}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{signal\-\_\-ctrlc\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}void signal\-\_\-ctrlc\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{sig\-\_\-num}
+\end{DoxyParamCaption}
+)}\label{button__led__map_8c_a7d4a5f7b55bbf7e75e5d0ca8737ad6ed}
+
+
+Definition at line 216 of file button\-\_\-led\-\_\-map.\-c.
+
+
+\begin{DoxyCode}
+217 \{
+218     \textcolor{keywordtype}{int} i;
+219 
+220     \textcolor{comment}{/* Inform user */}
+221     printf(\textcolor{stringliteral}{"\(\backslash\)nExit via Ctrl-C\(\backslash\)n\(\backslash\)n"});
+222 
+223     \textcolor{comment}{/* Unexport all selected gpios */}
+224     \textcolor{keywordflow}{for} (i=0; i<MAX_GPIO; i++) \{
+225         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_led[i], NULL);
+226         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_btn[i], NULL);
+227     \}
+228 
+229     \textcolor{comment}{/* Terminate program */}
+230     exit(sig\_num);
+231 \}
+\end{DoxyCode}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!signal\-\_\-terminate\-\_\-handler@{signal\-\_\-terminate\-\_\-handler}}
+\index{signal\-\_\-terminate\-\_\-handler@{signal\-\_\-terminate\-\_\-handler}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{signal\-\_\-terminate\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}void signal\-\_\-terminate\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{sig\-\_\-num}
+\end{DoxyParamCaption}
+)}\label{button__led__map_8c_a7af24fb2c627780b354a3740c5ab95e2}
+
+
+Definition at line 238 of file button\-\_\-led\-\_\-map.\-c.
+
+
+\begin{DoxyCode}
+239 \{
+240     \textcolor{keywordtype}{int} i;
+241 
+242     \textcolor{comment}{/* Inform user */}
+243     printf(\textcolor{stringliteral}{"\(\backslash\)nExit via SIGTERM\(\backslash\)n\(\backslash\)n"});
+244 
+245     \textcolor{comment}{/* Unexport all selected gpios */}
+246     \textcolor{keywordflow}{for} (i=0; i<MAX_GPIO; i++) \{
+247         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_led[i], NULL);
+248         sysfs_gpio_handler(GPIO_SYSFS_UNEXPORT, gpio_btn[i], NULL);
+249     \}
+250 
+251     \textcolor{comment}{/* Terminate program */}
+252     exit(sig\_num);
+253 \}
+\end{DoxyCode}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!sysfs\-\_\-gpio\-\_\-handler@{sysfs\-\_\-gpio\-\_\-handler}}
+\index{sysfs\-\_\-gpio\-\_\-handler@{sysfs\-\_\-gpio\-\_\-handler}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{sysfs\-\_\-gpio\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int sysfs\-\_\-gpio\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{function, }
+\item[{uint32\-\_\-t}]{gpio, }
+\item[{char $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\label{button__led__map_8c_ad49bc74aded90dea0d1551aaf295f184}
+
+
+Definition at line 115 of file button\-\_\-led\-\_\-map.\-c.
+
+
+\begin{DoxyCode}
+116 \{
+117     \textcolor{keywordtype}{char}     path\_str[MAX_PATH_STR];
+118     \textcolor{keywordtype}{char}     strBuf[MAX_STR_BUF];
+119     uint8\_t  oflags = 0;
+120     int32\_t  fd;
+121     uint32\_t len;
+122     uint8\_t  inval;
+123 
+124     \textcolor{comment}{/* Determine open flags based on function */}
+125     \textcolor{keywordflow}{switch} (\textcolor{keyword}{function}) \{
+126     \textcolor{keywordflow}{case} GPIO_SYSFS_EXPORT:
+127         snprintf(path\_str, \textcolor{keyword}{sizeof}(path\_str), SYSFS_PATH\textcolor{stringliteral}{"export"});
+128         oflags=O\_WRONLY;
+129         \textcolor{keywordflow}{break};
+130 
+131     \textcolor{keywordflow}{case} GPIO_SYSFS_UNEXPORT:
+132         snprintf(path\_str, \textcolor{keyword}{sizeof}(path\_str), SYSFS_PATH\textcolor{stringliteral}{"unexport"});
+133         oflags=O\_WRONLY;
+134         \textcolor{keywordflow}{break};
+135 
+136     \textcolor{keywordflow}{case} GPIO_SYSFS_SET_DIRECTION:
+137         snprintf(path\_str, \textcolor{keyword}{sizeof}(path\_str), SYSFS_PATH\textcolor{stringliteral}{"gpio%d/direction"}, gpio);
+138         oflags=O\_WRONLY;
+139         \textcolor{keywordflow}{break};
+140 
+141     \textcolor{keywordflow}{case} GPIO_SYSFS_SET_VALUE:
+142         snprintf(path\_str, \textcolor{keyword}{sizeof}(path\_str), SYSFS_PATH\textcolor{stringliteral}{"gpio%d/value"}, gpio);
+143         oflags=O\_WRONLY;
+144         \textcolor{keywordflow}{break};
+145 
+146     \textcolor{keywordflow}{case} GPIO_SYSFS_GET_DIRECTION:
+147     \textcolor{keywordflow}{case} GPIO_SYSFS_GET_VALUE:
+148         snprintf(path\_str, \textcolor{keyword}{sizeof}(path\_str), SYSFS_PATH\textcolor{stringliteral}{"gpio%d/value"}, gpio);
+149         oflags=O\_RDONLY;
+150         \textcolor{keywordflow}{break};
+151 
+152     \textcolor{keywordflow}{default}:
+153         printf(\textcolor{stringliteral}{"File operation flag not defined\(\backslash\)n"});
+154     \}
+155 
+156     \textcolor{comment}{/* Open the pseudo file given its path and open flags       */}
+157 \textcolor{preprocessor}{#ifdef DEBUG}
+158 \textcolor{preprocessor}{}    printf(\textcolor{stringliteral}{"open:%s\(\backslash\)n"}, path\_str);
+159 \textcolor{preprocessor}{#endif}
+160 \textcolor{preprocessor}{}
+161     fd = open(path\_str, oflags);
+162     \textcolor{keywordflow}{if} (fd  < 0) \{
+163         perror(path\_str);
+164         \textcolor{keywordflow}{return} fd;
+165     \}
+166 
+167     \textcolor{comment}{/* File operations r/w on the opened file */}
+168     \textcolor{keywordflow}{switch} (\textcolor{keyword}{function}) \{
+169     \textcolor{keywordflow}{case} GPIO_SYSFS_EXPORT:
+170     \textcolor{keywordflow}{case} GPIO_SYSFS_UNEXPORT:
+171         len = snprintf(strBuf, \textcolor{keyword}{sizeof}(strBuf), \textcolor{stringliteral}{"%d"}, gpio);
+172 \textcolor{preprocessor}{#ifdef DEBUG}
+173 \textcolor{preprocessor}{}        printf(\textcolor{stringliteral}{"exp/unexp:%s\(\backslash\)n"}, strBuf);
+174 \textcolor{preprocessor}{#endif}
+175 \textcolor{preprocessor}{}        write(fd, strBuf, len);
+176         \textcolor{keywordflow}{break};
+177 
+178     \textcolor{keywordflow}{case} GPIO_SYSFS_SET_DIRECTION:
+179 \textcolor{preprocessor}{#ifdef DEBUG}
+180 \textcolor{preprocessor}{}        printf(\textcolor{stringliteral}{"write dir:%s\(\backslash\)n"}, val);
+181 \textcolor{preprocessor}{#endif}
+182 \textcolor{preprocessor}{}        write(fd, val, strlen(val)+1);
+183         \textcolor{keywordflow}{break};
+184 
+185     \textcolor{keywordflow}{case} GPIO_SYSFS_SET_VALUE:
+186 \textcolor{preprocessor}{#ifdef DEBUG}
+187 \textcolor{preprocessor}{}        printf(\textcolor{stringliteral}{"write val:%s\(\backslash\)n"}, val);
+188 \textcolor{preprocessor}{#endif}
+189 \textcolor{preprocessor}{}        write(fd, val, strlen(val)+1);
+190         \textcolor{keywordflow}{break};
+191 
+192     \textcolor{keywordflow}{case} GPIO_SYSFS_GET_DIRECTION:
+193         \textcolor{keywordflow}{break};
+194 
+195     \textcolor{keywordflow}{case} GPIO_SYSFS_GET_VALUE:
+196         read(fd, &inval, 1);
+197 \textcolor{preprocessor}{#ifdef DEBUG}
+198 \textcolor{preprocessor}{}        printf(\textcolor{stringliteral}{"read val:%c\(\backslash\)n"}, inval);
+199 \textcolor{preprocessor}{#endif}
+200 \textcolor{preprocessor}{}        *val = inval;
+201         \textcolor{keywordflow}{break};
+202 
+203     \textcolor{keywordflow}{default}:
+204         printf(\textcolor{stringliteral}{"function not defined\(\backslash\)n"});
+205     \}
+206     close(fd);
+207     \textcolor{keywordflow}{return} 0;
+208 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S@{G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S}}
+\index{G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S@{G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}enum \{ ... \}   G\-P\-I\-O\-\_\-\-A\-C\-T\-I\-O\-N\-S}\label{button__led__map_8c_acecfda3ff6ccccbec3e532b6d95d3004}
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!gpio\-\_\-btn@{gpio\-\_\-btn}}
+\index{gpio\-\_\-btn@{gpio\-\_\-btn}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{gpio\-\_\-btn}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t gpio\-\_\-btn[{\bf M\-A\-X\-\_\-\-G\-P\-I\-O}] = \{{\bf B\-U\-T\-N\-\_\-1}, {\bf B\-U\-T\-N\-\_\-2}, {\bf B\-U\-T\-N\-\_\-3}, {\bf B\-U\-T\-N\-\_\-4}\}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_a640134a994568b03f9919b18bb490bec}
+
+
+Definition at line 103 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!gpio\-\_\-led@{gpio\-\_\-led}}
+\index{gpio\-\_\-led@{gpio\-\_\-led}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{gpio\-\_\-led}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t gpio\-\_\-led[{\bf M\-A\-X\-\_\-\-G\-P\-I\-O}] = \{{\bf L\-E\-D\-\_\-1}, {\bf L\-E\-D\-\_\-2}, {\bf L\-E\-D\-\_\-3}, {\bf L\-E\-D\-\_\-4}\}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_a5d685388c0f8c379e0ae0bcfb563f1b5}
+
+
+Definition at line 102 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!I\-N@{I\-N}}
+\index{I\-N@{I\-N}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{I\-N}]{\setlength{\rightskip}{0pt plus 5cm}char I\-N[$\,$] = \char`\"{}in\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_ace73f8c95b0f3dc04a4b18387b41bc39}
+
+
+Definition at line 108 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-F\-F@{O\-F\-F}}
+\index{O\-F\-F@{O\-F\-F}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}char O\-F\-F[$\,$] = \char`\"{}1\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_a78377576c916f3f2e9f390eddca2e110}
+
+
+Definition at line 106 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-N@{O\-N}}
+\index{O\-N@{O\-N}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-N}]{\setlength{\rightskip}{0pt plus 5cm}char O\-N[$\,$] = \char`\"{}0\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_a068c69649cbf2d1cc5cc0f0adacd4f29}
+
+
+Definition at line 105 of file button\-\_\-led\-\_\-map.\-c.
+
+\index{button\-\_\-led\-\_\-map.\-c@{button\-\_\-led\-\_\-map.\-c}!O\-U\-T@{O\-U\-T}}
+\index{O\-U\-T@{O\-U\-T}!button_led_map.c@{button\-\_\-led\-\_\-map.\-c}}
+\subsubsection[{O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}char O\-U\-T[$\,$] = \char`\"{}out\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}\label{button__led__map_8c_a6455dee27f6b58284b96e1ba34688649}
+
+
+Definition at line 107 of file button\-\_\-led\-\_\-map.\-c.
+
